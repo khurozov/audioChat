@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="229.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.ilyoskhurozov.audiochat.Controller">
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="229.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.ilyoskhurozov.audiochat.Controller">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="43.0" minWidth="10.0" prefWidth="37.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.0" minWidth="0.0" prefWidth="61.0" />
@@ -22,7 +23,8 @@
         <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -32,12 +34,12 @@
     <Button fx:id="connectBtn" focusTraversable="false" mnemonicParsing="false" onAction="#connect" prefHeight="30.0" prefWidth="118.0" text="Connect" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
     <TextField fx:id="port" focusTraversable="false" prefHeight="24.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
     <TextField fx:id="ip" focusTraversable="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-    <ToggleButton fx:id="speakBtn" contentDisplay="GRAPHIC_ONLY" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#speak" prefHeight="28.0" prefWidth="22.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+    <ToggleButton fx:id="micBtn" contentDisplay="GRAPHIC_ONLY" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#speak" prefHeight="28.0" prefWidth="22.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
         <graphic>
           <FontIcon iconLiteral="mdi2m-microphone" iconSize="20" />
         </graphic>
     </ToggleButton>
-    <ToggleButton fx:id="listenBtn" contentDisplay="GRAPHIC_ONLY" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#listen" prefHeight="28.0" prefWidth="22.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+    <ToggleButton fx:id="playBtn" contentDisplay="GRAPHIC_ONLY" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#listen" prefHeight="28.0" prefWidth="22.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
         <graphic>
           <FontIcon iconLiteral="mdi2h-headphones" iconSize="20" />
         </graphic>
@@ -47,4 +49,6 @@
           <Font name="System Bold" size="13.0" />
         </font>
     </Label>
+   <ProgressBar fx:id="listenBar" disable="true" prefWidth="200.0" progress="0.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+   <ProgressBar fx:id="playBar" disable="true" prefWidth="200.0" progress="0.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
 </GridPane>

@@ -1,5 +1,7 @@
 package uz.ilyoskhurozov.audiochat;
 
+import javafx.scene.control.ProgressBar;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine.Info;
@@ -13,11 +15,12 @@ public class ReceiveAndPlay {
     boolean isReceiving = true;
     final int port;
     final SourceDataLine sdl;
+    private ProgressBar playBar;
 
     public ReceiveAndPlay(int port) throws LineUnavailableException {
         this.port = port;
-        Info info = new Info(SourceDataLine.class, this.getAudioFormat());
-        this.sdl = (SourceDataLine)AudioSystem.getLine(info);
+        Info info = new Info(SourceDataLine.class, getAudioFormat());
+        sdl = (SourceDataLine)AudioSystem.getLine(info);
     }
 
     private AudioFormat getAudioFormat() {
@@ -28,19 +31,30 @@ public class ReceiveAndPlay {
     }
 
     public void start() {
-        this.isReceiving = true;
+        isReceiving = true;
 
         try {
-            this.sdl.open(this.getAudioFormat());
-            this.sdl.start();
-            MulticastSocket socket = new MulticastSocket(this.port);
-            byte[] audio = new byte[256];
+            sdl.open(getAudioFormat());
+            sdl.start();
+            if (playBar != null) playBar.setDisable(false);
+
+            MulticastSocket socket = new MulticastSocket(port);
+            byte[] audio = new byte[128];
             DatagramPacket receivePacket = new DatagramPacket(audio, audio.length);
             Thread thread = new Thread(() -> {
-                while(this.isReceiving) {
+                while(isReceiving) {
                     try {
                         socket.receive(receivePacket);
-                        this.sdl.write(audio, 0, receivePacket.getLength());
+
+                        if (playBar != null){
+                            int sum = 16384; //midpoint
+                            for (byte a : audio) {
+                                sum += a;
+                            }
+                            playBar.setProgress(sum / 32640.0);
+                        }
+
+                        sdl.write(audio, 0, receivePacket.getLength());
                     } catch (IOException var5) {
                         var5.printStackTrace();
                     }
@@ -56,8 +70,13 @@ public class ReceiveAndPlay {
     }
 
     public void stop() {
-        this.isReceiving = false;
-        this.sdl.stop();
-        this.sdl.close();
+        isReceiving = false;
+        sdl.stop();
+        sdl.close();
+        if (playBar != null) playBar.setDisable(true);
+    }
+
+    public void attachBar(ProgressBar playBar) {
+        this.playBar = playBar;
     }
 }

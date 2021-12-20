@@ -16,9 +16,14 @@ public class Controller {
     @FXML
     private Button connectBtn;
     @FXML
-    private ToggleButton listenBtn;
+    private ToggleButton playBtn;
     @FXML
-    private ToggleButton speakBtn;
+    private ToggleButton micBtn;
+    @FXML
+    private ProgressBar playBar;
+    @FXML
+    private ProgressBar listenBar;
+
     private static ListenAndSend listenAndSend;
     private static ReceiveAndPlay receiveAndPlay;
 
@@ -28,13 +33,18 @@ public class Controller {
     @FXML
     void connect() {
         try {
-            listenAndSend = new ListenAndSend(InetAddress.getByName(this.ip.getText()), Integer.parseInt(this.port.getText()));
-            receiveAndPlay = new ReceiveAndPlay(Integer.parseInt(this.port.getText()));
-            this.connectBtn.setDisable(true);
-            this.ip.setEditable(false);
-            this.port.setEditable(false);
-            this.listenBtn.setDisable(false);
-            this.speakBtn.setDisable(false);
+            listenAndSend = new ListenAndSend(InetAddress.getByName(ip.getText()), Integer.parseInt(port.getText()));
+            listenAndSend.attachBar(listenBar);
+
+            receiveAndPlay = new ReceiveAndPlay(Integer.parseInt(port.getText()));
+            receiveAndPlay.attachBar(playBar);
+
+            connectBtn.setDisable(true);
+            ip.setEditable(false);
+            port.setEditable(false);
+
+            micBtn.setDisable(false);
+            playBtn.setDisable(false);
         } catch (LineUnavailableException | UnknownHostException var2) {
             (new Alert(AlertType.ERROR, "Something went wrong", new ButtonType[0])).showAndWait();
         }
@@ -43,7 +53,7 @@ public class Controller {
 
     @FXML
     void speak() {
-        if (this.speakBtn.isSelected()) {
+        if (micBtn.isSelected()) {
             listenAndSend.start();
         } else {
             listenAndSend.stop();
@@ -53,7 +63,7 @@ public class Controller {
 
     @FXML
     void listen() {
-        if (this.listenBtn.isSelected()) {
+        if (playBtn.isSelected()) {
             receiveAndPlay.start();
         } else {
             receiveAndPlay.stop();

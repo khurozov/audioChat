@@ -1,10 +1,9 @@
-package uz.ilyoskhurozov.audiochat;
+package uz.khurozov.audiochat;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
-import javax.sound.sampled.LineUnavailableException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -45,8 +44,8 @@ public class Controller {
 
             micBtn.setDisable(false);
             playBtn.setDisable(false);
-        } catch (LineUnavailableException | UnknownHostException var2) {
-            (new Alert(AlertType.ERROR, "Something went wrong", new ButtonType[0])).showAndWait();
+        } catch (Exception var2) {
+            new Alert(AlertType.ERROR, "Something went wrong", new ButtonType[0]).showAndWait();
         }
 
     }

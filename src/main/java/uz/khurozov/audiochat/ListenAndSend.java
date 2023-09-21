@@ -1,4 +1,4 @@
-package uz.ilyoskhurozov.audiochat;
+package uz.khurozov.audiochat;
 
 import javafx.scene.control.ProgressBar;
 

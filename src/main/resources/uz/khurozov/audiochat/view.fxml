@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="229.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.ilyoskhurozov.audiochat.Controller">
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="229.0" vgap="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.khurozov.audiochat.Controller">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="43.0" minWidth="10.0" prefWidth="37.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.0" minWidth="0.0" prefWidth="61.0" />

@@ -3,7 +3,6 @@ module uz.ilyoskhurozov.audiochat {
     requires javafx.fxml;
     requires java.desktop;
 
-
-    opens uz.ilyoskhurozov.audiochat to javafx.fxml;
-    exports uz.ilyoskhurozov.audiochat;
+    opens uz.khurozov.audiochat to javafx.fxml;
+    exports uz.khurozov.audiochat;
 }

@@ -9,6 +9,8 @@ import java.net.UnknownHostException;
 
 public class Controller {
     @FXML
+    private Label msg;
+    @FXML
     private TextField ip;
     @FXML
     private TextField port;
@@ -26,7 +28,13 @@ public class Controller {
     private static ListenAndSend listenAndSend;
     private static ReceiveAndPlay receiveAndPlay;
 
-    public Controller() {
+    @FXML
+    void initialize() {
+        try {
+            msg.setText("Your IP: " + InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException e) {
+            msg.setText("Not connected to network");
+        }
     }
 
     @FXML

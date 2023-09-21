@@ -44,7 +44,7 @@
           <FontIcon iconLiteral="mdi2h-headphones" iconSize="20" />
         </graphic>
     </ToggleButton>
-    <Label text="Send and receive audio through UDP" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+    <Label fx:id="msg" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         <font>
           <Font name="System Bold" size="13.0" />
         </font>
